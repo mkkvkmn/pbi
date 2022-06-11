@@ -1,0 +1,4 @@
+﻿select 
+	[Measure_Name],[Expression] 
+from $SYSTEM.MDSCHEMA_MEASURES 
+where [Expression] <> '1'

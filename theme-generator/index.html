@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- <script src="replacer.js"></script> -->
+    <script src="theme.js"></script>
+    <script>
+        /*
+        
+        Open this file in browser to create a theme
+        
+        */
+
+        // These are the values that will be replaced
+        const themeName = "theme_name";
+        // Colors
+        const color1 = "#009F77";
+        const color2 = "#190C4F";
+        const color3 = "#FCD4E1";
+        const color4 = "#FF465A";
+        const color5 = "#FFCD73";
+        const color6 = "#51D0D3";
+        const color7 = "#000000";
+        const color8 = "#D9D9D9";
+        // Fonts
+        const selectedFont = "Company Regular,Trebuchet MS,arial, wf_segoe-ui_bold, helvetica, sans-serif";
+        const textColor = "#000000";
+        // General for visuals
+        const visualBgColor = "#FFFFFF";
+        const visualBgTransparency = 50;
+        const axisLabelandGridColor = "#ABABAB";
+        const secondaryBgColor = "#EFEFEF";
+        const dataLabelColor = textColor;
+        const dataLabelBg = visualBgColor;
+        const toolTipFontColor = "#FFFFFF";
+        const toolTipBgColor = color1;
+        const goodColor = "#009F77";
+        const neutralColor = "#FFF58B";
+        const badColor = "#FB8793";
+        // Specific visuals
+        const slicerItemBgColor = "#D9D9D9";
+
+        // Page
+        const pageBgAndFilterPaneBgColor = slicerItemBgColor;
+        const appliedPageBgAndFilterPaneBgColor = "#E9E9E9";
+
+        const mapObj = {
+            themeName: themeName,
+            color1: color1,
+            color2: color2,
+            color3: color3,
+            color4: color4,
+            color5: color5,
+            color6: color6,
+            color7: color7,
+            color8: color8,
+            selectedFont: selectedFont,
+            textColor: textColor,
+            visualBgColor: visualBgColor,
+            showVisualBg: visualBgColor.length == 7,
+            visualBgTransparency: visualBgTransparency,
+            // showGridlines: showGridlines,
+            axisLabelandGridColor: axisLabelandGridColor,
+            secondaryBgColor: secondaryBgColor,
+            dataLabelColor: dataLabelColor,
+            dataLabelBg: dataLabelBg,
+            toolTipFontColor: toolTipFontColor,
+            toolTipBgColor: toolTipBgColor,
+            goodColor: goodColor,
+            neutralColor: neutralColor,
+            badColor: badColor,
+            slicerItemBgColor: slicerItemBgColor,
+            pageBgAndFilterPaneBgColor: pageBgAndFilterPaneBgColor,
+            appliedPageBgAndFilterPaneBgColor: appliedPageBgAndFilterPaneBgColor,
+        }; 
+
+        const newTheme = replaceAll(JSON.stringify(theme),mapObj);
+        // console.log(JSON.parse(newTheme));
+
+        saveText( newTheme, themeName + "-pbi-theme.json" );
+
+        // Save to file
+        function saveText(text, filename){
+            var a = document.createElement('a');
+            a.setAttribute('href', 'data:text/plain;charset=utf-8,'+encodeURIComponent(text));
+            a.setAttribute('download', filename);
+            a.click()
+        }
+
+        // Replace values, copied with pride: https://stackoverflow.com/questions/15604140/replace-multiple-strings-with-multiple-other-strings
+        function replaceAll(str, mapObj) {
+            var re = new RegExp(Object.keys(mapObj).join("|"), "gi");
+
+            return str.replace(re, function (matched) {
+                return mapObj[matched];
+            });
+        }
+
+    </script>
+</head>
+
+<body>
+    <h1>Theme created!</h1>
+</body>
+
+</html>
